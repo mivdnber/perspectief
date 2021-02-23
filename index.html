@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<title>PERSPECTIEF VOOR IEDEREEN</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body,
+    section {
+        height: 100vh;
+        color: #F5F5F5;
+        font-size: 24px;
+    }
+    body {
+        background-color: #263238;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1000px;
+        height: 100%;
+        perspective: 300px;
+    }
+
+    h1 {
+        text-align: center;
+        transform: rotateX(20deg);
+    }
+
+    #controls {
+        text-align: center;
+    }
+
+    #img {
+        width: 75%;
+        height: 75%;
+        object-fit: contain;
+        transition: all 2s;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .victory #img {
+        transform: rotateX(30deg);
+    }
+
+    .baby {
+        display: none;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .victory .baby {
+        display: inherit;
+    }
+
+    #confettis {
+        display: none;
+        overflow: hidden;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+    }
+
+    .victory #confettis {
+        display: inherit;
+    }
+
+    .confetti {
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        transform-origin: left top;
+        animation: confetti 5s ease-in-out -2s infinite;
+    }
+
+    @keyframes confetti {
+        0% {
+            transform: rotateZ(15deg) rotateY(0deg) translate(0, 0);
+        }
+
+        25% {
+            transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh);
+        }
+
+        50% {
+            transform: rotateZ(15deg) rotateY(720deg) translate(5vw, 60vh);
+        }
+
+        75% {
+            transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw, 80vh);
+        }
+
+        100% {
+            transform: rotateZ(15deg) rotateY(1440deg) translate(10vw, 110vh);
+        }
+    }
+
+    .confetti:nth-child(1) {
+        left: 10%;
+        animation-delay: 0;
+        background-color: #fc0120;
+    }
+
+    .confetti:nth-child(2) {
+        left: 20%;
+        animation-delay: -5s;
+        background-color: #8257e6;
+    }
+
+    .confetti:nth-child(3) {
+        left: 30%;
+        animation-delay: -3s;
+        background-color: #ffbf4d;
+    }
+
+    .confetti:nth-child(4) {
+        left: 40%;
+        animation-delay: -2.5s;
+        background-color: #fe5d7a;
+    }
+
+    .confetti:nth-child(5) {
+        left: 50%;
+        animation-delay: -4s;
+        background-color: #45ec9c;
+    }
+
+    .confetti:nth-child(6) {
+        left: 60%;
+        animation-delay: -6s;
+        background-color: #f6e327;
+    }
+
+    .confetti:nth-child(7) {
+        left: 70%;
+        animation-delay: -1.5s;
+        background-color: #f769ce;
+    }
+
+    .confetti:nth-child(8) {
+        left: 80%;
+        animation-delay: -2s;
+        background-color: #007de7;
+    }
+
+    .confetti:nth-child(9) {
+        left: 90%;
+        animation-delay: -3.5s;
+        background-color: #63b4fc;
+    }
+
+    .confetti:nth-child(10) {
+        left: 100%;
+        animation-delay: -2.5s;
+        background-color: #f9c4ea;
+    }
+</style>
+<div id="confettis">
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+</div>
+<section>
+    <h1>PERSPECTIEF VOOR IEDEREEN</h1>
+    <p id="controls">
+        Geef
+        <select name="group" id="group">
+            <option value="/static/img/cultuur.jpeg">de cultuursector</option>
+            <option value="/static/img/student.webp">studenten</option>
+        </select>
+        perspectief<br>
+        <button id="go">Go!</button>
+    </p>
+    <img id="img" src="/static/img/cultuur.jpeg" alt="Cultuur">
+</section>
+<img style="left: 0" src="/static/img/dancing-baby.gif" alt="dancing baby" class="baby">
+<img style="right: 0" src="/static/img/dancing-baby.gif" alt="dancing baby" class="baby">
+<audio src="/static/audio/victory.mp3">
+    Your browser does not support the HTML5 Audio element.
+</audio>
+<script defer>
+    const bodyElement = document.querySelector('body')
+    const selectElement = document.querySelector('#group')
+    const goButton = document.querySelector('#go')
+    const imageElement = document.querySelector('#img')
+    const audioElement = document.querySelector('audio')
+    selectElement.addEventListener('change', e => {
+        imageElement.src = selectElement.value
+    })
+    goButton.addEventListener('click', e => {
+        bodyElement.classList.add('victory')
+        audioElement.play()
+    })
+</script>
